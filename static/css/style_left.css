@@ -1,0 +1,66 @@
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+}
+
+#left{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    min-width: 35%;
+    height: 100%;
+    padding: 20px 15px;
+    gap: 20px;
+}
+
+h1.inv{
+    background-color: green;
+    height: 60px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inventory{
+    background-color: yellow;
+    width: 100%;
+    height: 370px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto  auto;
+    grid-template-rows: auto auto auto auto;
+    column-gap: 10px;
+    padding: 15px 15px;
+}
+
+.kafelek{
+    width: 75px;
+    height: 75px;
+    background-color: purple;
+}
+
+.fart{
+    width: 100%;
+    height: 100%;
+    background-color: purple;
+}
+
+#fertilizers{
+    background-color: blue;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
