@@ -1,0 +1,299 @@
+{
+    "plants": {
+        "flowers":[
+            {
+                "id" : 0,
+                "name": "Mak",
+                "item_name": "mak",
+                "item_type": "flower",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 1,
+                "name": "Słonecznik",
+                "item_name": "slonecznik",
+                "item_type": "flower",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 2,
+                "name": "Tulipan",
+                "item_name": "tulipan",
+                "item_type": "flower",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 3,
+                "name": "Zawilec",
+                "item_name": "zawilec",
+                "item_type": "flower",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 4,
+                "name": "Narcyz",
+                "item_name": "narcyz",
+                "item_type": "flower",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            }
+        ],
+        "fruits":[
+            {
+                "id" : 0,
+                "name": "Winogrona",
+                "item_name": "winogrona",
+                "item_type": "fruit",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 1,
+                "name": "Truskawka",
+                "item_name": "truskawka",
+                "item_type": "fruit",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 2,
+                "name": "Arbuz",
+                "item_name": "arbuz",
+                "item_type": "fruit",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 3,
+                "name": "Borówki",
+                "item_name": "borowki",
+                "item_type": "fruit",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            }
+        ],
+        "vegetables":[
+            {
+                "id" : 0,
+                "name": "Pomidor",
+                "item_name": "pomidor",
+                "item_type": "vegetable",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 1,
+                "name": "Ziemniak",
+                "item_name": "ziemniak",
+                "item_type": "vegetable",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 2,
+                "name": "Ogórek",
+                "item_name": "ogorek",
+                "item_type": "vegetable",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 3,
+                "name": "Dynia",
+                "item_name": "dynia",
+                "item_type": "vegetable",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            }
+        ],
+        "trees":[
+            {
+                "id" : 0,
+                "name": "Jabłoń",
+                "item_name": "jablon",
+                "item_type": "tree",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 1,
+                "name": "Grusza",
+                "item_name": "grusza",
+                "item_type": "tree",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            },
+            {
+                "id" : 2,
+                "name": "Wiśnia",
+                "item_name": "wisnia",
+                "item_type": "tree",
+                "buy_price": 10,
+                "sell_price": 20,
+                "growth_time": 100,
+                "special_type": false 
+            }
+        ]
+    },
+    "fertilizers": [
+        {
+            "id": 0,
+            "name": "Nawóz Kwaśny",
+            "item_name": "nawoz_kwasny",
+            "item_type": "fertilizer",
+            "buy_price": 10,
+            "pest_protection": false,
+            "effects": [
+                {
+                    "plant_type": "flower",
+                    "growth_multiplier": 0.75,
+                    "value_multiplier": 1
+                },
+                {
+                    "plant_type": "fruit",
+                    "growth_multiplier": 1.25,
+                    "value_multiplier": 0.75
+                },
+                {
+                    "plant_type": "vegetable",
+                    "growth_multiplier": 1.25,
+                    "value_multiplier": 0.75
+                },
+                {
+                    "plant_type": "tree",
+                    "growth_multiplier": 0.9,
+                    "value_multiplier": 1
+                }
+            ],
+            "description": "Ten nawóz jest korzystny dla kwiatów i drzew, lecz nie należy używać go do owoców i warzyw."
+            
+        },
+        {
+            "id": 1,
+            "name": "Nawóz Zasadowy",
+            "item_name": "nawoz_zasadowy",
+            "item_type": "fertilizer",
+            "buy_price": 10,
+            "pest_protection": false,
+            "effects": [
+                {
+                    "plant_type": "flower",
+                    "growth_multiplier": 1.25,
+                    "value_multiplier": 1
+                },
+                {
+                    "plant_type": "fruit",
+                    "growth_multiplier": 0.85,
+                    "value_multiplier": 1.1
+                },
+                {
+                    "plant_type": "vegetable",
+                    "growth_multiplier": 0.85,
+                    "value_multiplier": 1.1
+                },
+                {
+                    "plant_type": "tree",
+                    "growth_multiplier": 1.25,
+                    "value_multiplier": 1
+                }
+            ],
+            "description": "Ten nawóz jest korzystny dla owoców i warzyw, lecz nie należy używać go do kwiatów i drzew."
+        },
+        {
+            "id": 2,
+            "name": "Nawóz Naturalny",
+            "item_name": "nawoz_naturalny",
+            "item_type": "fertilizer",
+            "buy_price": 10,
+            "pest_protection": false,
+            "effects": [
+                {
+                    "plant_type": "flower",
+                    "growth_multiplier": 1.8,
+                    "value_multiplier": 2.1
+                },
+                {
+                    "plant_type": "fruit",
+                    "growth_multiplier": 1.5,
+                    "value_multiplier": 1.2
+                },
+                {
+                    "plant_type": "vegetable",
+                    "growth_multiplier": 1.4,
+                    "value_multiplier": 1.2
+                },
+                {
+                    "plant_type": "tree",
+                    "growth_multiplier": 1.6,
+                    "value_multiplier": 2.1
+                }
+            ],
+            "description": "Ten nawóz zwiększa czas wzrostu wszystkich roślin, lecz zwiększa też cenę, w której zostaną one sprzedane w zależności od rodzaju rośliny."
+        },
+        {
+            "id": 3,
+            "name": "Nawóz sztuczny",
+            "item_name": "nawoz_sztuczny",
+            "item_type": "fertilizer",
+            "buy_price": 10,
+            "pest_protection": true,
+            "effects": [
+                {
+                    "plant_type": "flower",
+                    "growth_multiplier": 0.75,
+                    "value_multiplier": 0.8
+                },
+                {
+                    "plant_type": "fruit",
+                    "growth_multiplier": 0.75,
+                    "value_multiplier": 0.8
+                },
+                {
+                    "plant_type": "vegetable",
+                    "growth_multiplier": 0.75,
+                    "value_multiplier": 0.8
+                },
+                {
+                    "plant_type": "tree",
+                    "growth_multiplier": 0.75,
+                    "value_multiplier": 0.8
+                }
+            ],
+            "description": "Ten nawóz zmniejsza czas wzrostu wszystkich roślin i zmniejsza też cenę, w której zostaną one sprzedane w zależności od rodzaju rośliny, dodatkowo uchrania przed szkodnikami."
+        }
+    ]
+}
