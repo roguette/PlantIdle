@@ -1,4 +1,3 @@
-
 const inventorySlots = 30;
 const stackSize = 99;
 
@@ -42,7 +41,7 @@ class InventorySlot {
     }
 
     isEmpty() {
-        let isSlotEmpty = this.item === null || this.count <= 0;
+        const isSlotEmpty = this.item === null || this.count <= 0;
         
         if (isSlotEmpty) { // automatically clears invalid items
             this.item = null;
@@ -60,18 +59,13 @@ class Inventory {
             this.slots.push(new InventorySlot());
         }
     }
-    #validateItems() {
-        for (let i = 0; i < inventorySlots; i++) {
-            slots[i].isEmpty(); 
-        }
-    }
 
     printItems(columns = 5) {
-        console.log(this.slots);
+        //console.log(this.slots);
         let toShow = [];
         for (let i = 0; i < inventorySlots; i++) {
-            let row = Math.floor(i / columns);
-            let column = i % columns
+            const row = Math.floor(i / columns);
+            const column = i % columns
 
             if (toShow[row] === undefined) {
                 toShow[row] = [];
@@ -87,44 +81,86 @@ class Inventory {
         }
         console.table(toShow);
     }
-    addItem(addedItem, count = 1, index = null) {
+    addItem(addedItem, toAdd = 1, index = null) {
         if (!(addedItem instanceof Item)) {
             return new Result(false, "Not an item");
         }
-        if (count < 1) {
+        if (toAdd < 1) {
             return new Result(false, "Count cannot be less than 1");
         }
-
         if (index !== null) { // allows inserting in specific slots
-            index = index % inventorySlots;
-            if (this.slots[index].isEmpty()) {
-                this.slots[index].item = addedItem;
-                return new Result(true, "");
+            index = ((index % inventorySlots) + inventorySlots) % inventorySlots; 
+            const slot = this.slots[index];
+            if (!slot.isEmpty() && slot.item.id === addedItem.id) {
+                // can stack
+                const space = stackSize - slot.count; // 10 (space left) = 99 (stack size) - 80 (items in slot) 
+                const willAdd = Math.min(space, toAdd); // 10 = min(10, 80 (items to add to the inventory))
+                if (add > 0) {
+                    slot.count += willAdd;
+                    toAdd -= willAdd;
+                }
+            } else if (slot.isEmpty()) {
+                // cannot stack
+                // no need to calculate space because the slot is empty, just add stack size
+                const willAdd = Math.min(stackSize, toAdd) // add at most 1 stack
+                slot.item = addedItem
+                slot.count = willAdd;
+                toAdd -= willAdd;
             }
         }
 
-        for (let i = 0; i < inventorySlots; i++) { // check the first slot, then the second ...
-            if (this.slots[i].isEmpty()) {
-                this.slots[i].item = addedItem;
-                this.slots[i].count = count;
-                return new Result(true, "");
+        for (let i = 0; i < inventorySlots && toAdd > 0; i++) { // first pass - find if theres a slot the item can stack with
+            const slot = this.slots[i];
+
+            if (slot.isEmpty()) {
+                continue; // ignore empty slots
+            }
+
+            if (slot.item.id == addedItem.id) {
+                // add to existing stack, do not exceed stackSize
+                const space = stackSize - slot.count;
+                const ableToAdd = Math.min(space, toAdd);
+                if (ableToAdd > 0) {
+                    slot.count += ableToAdd;
+                    toAdd -= ableToAdd;
+                }
+
             }   
         }
-        return new Result(false, "Inventory is full");
+
+        for (let i = 0; i < inventorySlots && toAdd > 0 ; i++) { // second pass - Ok we cant stack with anything, look for an empty slot
+            const slot = this.slots[i];
+            if (!slot.isEmpty()) {
+                continue; // skip slots with items
+            }   
+            const willAdd = Math.min(stackSize, toAdd) // add at most 1 stack
+            slot.item = addedItem
+            slot.count = willAdd;
+            toAdd -= willAdd;
+        }
+        if (toAdd > 0) {
+            return new Result(false, "Not all items could be added");
+        } else if (toAdd === 0) {
+            return new Result(true, "");
+        }
+
+
     }
     setItemCount(index, count) {
-        if (!index || !count) {
+        if (index === undefined || index === null || count === undefined || count === null) {
             return new Result(false, "Index and count cannot be null");
         }
-        if (this.slots[index] === null) {
-            return new Result(false, "Cannot set count of item which doesnt exist");
+        if (index < 0 || index >= inventorySlots) {
+            return new Result(false, "Index out of range");
         }
-        
-        this.slots[index].count = count
+        if (this.slots[index].isEmpty()) {
+            return new Result(false, "Cannot set count of item which doesn't exist");
+        }
+        this.slots[index].count = count;
+        return new Result(true, "");
     }
 
 }
-
 
 
 $(()=>{
