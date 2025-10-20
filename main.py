@@ -9,7 +9,7 @@ def serve_idex():
 
 @app.route("/api/get_plants", methods=["GET"])
 def api_data_plants():
-    with open("static/data/data.json", "r") as f:
+    with open("./data/data.json", "r") as f:
         content = f.read()
         f_data = json.loads(content)
         return jsonify({'data': f_data})
