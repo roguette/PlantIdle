@@ -82,6 +82,10 @@ class Inventory {
         console.table(toShow);
     }
     addItem(addedItem, toAdd = 1, index = null) {
+        if (this.isFull()) {
+            return new Result(false, "Inventory is full");
+        }
+
         if (!(addedItem instanceof Item)) {
             return new Result(false, "Not an item");
         }
@@ -159,7 +163,15 @@ class Inventory {
         this.slots[index].count = count;
         return new Result(true, "");
     }
-
+    isFull() {
+        for (let i = 0; i < inventorySlots; i++) {
+            const slot = this.slots[i];
+            if (slot.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 
