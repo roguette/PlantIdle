@@ -1,23 +1,41 @@
+👑 - kupowane u merchanta
+🏁 - wstępnie wpisane do data.json !!!BEZ DOBRYCH LICZB!!!
+
 złota pistacja ✅
 
-jabłko
-gruszka
-wiśnia ✅
+-----Drzewa
+jabłko (jabłoń)🏁
+gruszka (grusza)🏁
+wiśnia ✅🏁
+pomarańcza
+orzech włoski
+bananowiec 👑
+
+-----Owoce
+winogrono ✅🏁
+truskawka🏁
+arbuz🏁
+borówka🏁
+agrest
+czerwona porzeczka
 
 
-winogrono ✅
-truskawka
-arbuz
-borówka
+-----Warzywa
+pomidor🏁
+ziemniak🏁
+ogórek🏁
+dynia🏁
+marchewka
+burak
+cebula
+cukinia
+por
 
-pomidor
-ziemniak
-ogórek
-dynia
-
-mak
-słonecznik
-tulipan
-zawilec
-narcyz
-
+-----Kwiaty
+mak🏁
+słonecznik🏁
+tulipan🏁
+zawilec🏁
+narcyz🏁
+storczyk
+lilia
