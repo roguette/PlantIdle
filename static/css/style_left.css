@@ -33,34 +33,49 @@ h1.inv{
 }
 
 #inventory{
-    background-color: yellow;
-    width: 100%;
-    height: 370px;
+    background-color: orange;
     display: grid;
-    grid-template-columns: auto auto auto auto auto  auto;
-    grid-template-rows: auto auto auto auto;
-    column-gap: 10px;
+    grid-template-columns: auto auto auto auto auto auto;
+
+    gap: 10px;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
     padding: 15px 15px;
 }
 
 .kafelek{
-    width: 75px;
-    height: 75px;
-    background-color: purple;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
 }
 
 .fart{
     width: 100%;
     height: 100%;
     background-color: purple;
+    min-height: 100px;
 }
 
 #fertilizers{
+    overflow-y: scroll;
+    margin-top: auto;
     background-color: blue;
     width: 100%;
-    height: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 10px;
+}
+
+@media (max-width: 1300px) {
+
+    #inventory{
+        grid-template-columns: auto auto auto auto auto;
+    }
+    .kafelek{
+        width: 75px;
+        height: 75px;
+    }
 }

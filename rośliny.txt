@@ -3,8 +3,7 @@ złota pistacja ✅
 jabłko
 gruszka
 wiśnia ✅
-mak
-słonecznik
+
 
 winogrono ✅
 truskawka
@@ -16,6 +15,8 @@ ziemniak
 ogórek
 dynia
 
+mak
+słonecznik
 tulipan
 zawilec
 narcyz
