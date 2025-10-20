@@ -1,8 +1,6 @@
 
 const inventorySlots = 30;
-
-
-let loadBenchmarkStart = Date.now();
+const stackSize = 99;
 
 class Result {
     success;
@@ -15,24 +13,23 @@ class Result {
 }
 
 class Item {
-    static nextId = 0;
+    // from data.json
+    name;
     id;
-    itemName;
-    price;
     itemType;
-    itemData;
+    buyPrice;
+    sellPrice;
+    growthTime;
+    isSpecial;
 
-    constructor(itemName, price, itemType, itemData) {
-        if (!itemName || !price || !itemType || !itemData ) {
-            throw new Error("One or more item parameters are null");
-        }
-
-
-        this.id = Item.nextId++;
-        this.itemName = itemName;
-        this.price = price;
+    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial}) {
+        this.name = name;
+        this.id = id;
         this.itemType = itemType;
-        this.itemData = itemData;
+        this.buyPrice = buyPrice;
+        this.sellPrice = sellPrice;
+        this.growthTime = growthTime;
+        this.isSpecial = isSpecial;
     }
 }
 class InventorySlot {
@@ -47,7 +44,7 @@ class InventorySlot {
     isEmpty() {
         let isSlotEmpty = this.item === null || this.count <= 0;
         
-        if (isSlotEmpty) {
+        if (isSlotEmpty) { // automatically clears invalid items
             this.item = null;
             this.count = 0;
         }
@@ -61,6 +58,11 @@ class Inventory {
     constructor() {
         for (let i = 0; i < inventorySlots; i++) {
             this.slots.push(new InventorySlot());
+        }
+    }
+    #validateItems() {
+        for (let i = 0; i < inventorySlots; i++) {
+            slots[i].isEmpty(); 
         }
     }
 
@@ -79,7 +81,7 @@ class Inventory {
             if (slot.isEmpty()) {
                 toShow[row][column] = "None";
             } else {
-                toShow[row][column] = `${i}: ${slot.item.itemName}x${slot.count}`;
+                toShow[row][column] = `${i}: ${slot.item.id}x${slot.count}`;
             }
             
         }
@@ -88,6 +90,9 @@ class Inventory {
     addItem(addedItem, count = 1, index = null) {
         if (!(addedItem instanceof Item)) {
             return new Result(false, "Not an item");
+        }
+        if (count < 1) {
+            return new Result(false, "Count cannot be less than 1");
         }
 
         if (index !== null) { // allows inserting in specific slots
@@ -117,11 +122,11 @@ class Inventory {
         
         this.slots[index].count = count
     }
-    
+
 }
 
 
 
 $(()=>{
-    console.log(`Loaded in ${Date.now() - loadBenchmarkStart} ms`);
+    console.log(`DOMContentLoaded`);
 })
