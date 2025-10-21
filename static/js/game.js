@@ -79,16 +79,17 @@ export class Inventory {
 
     }
     addItem(addedItem, toAdd = 1, index = null) {
-        if (this.isFull()) {
-            return new Result(false, "Inventory is full");
-        }
-
+        
         if (!(addedItem instanceof Item)) {
             return new Result(false, "Not an item");
         }
         if (toAdd < 1) {
             return new Result(false, "Count cannot be less than 1");
         }
+        if (!this.willFit(addedItem, toAdd)) {
+            return new Result(false, "Inventory is full");
+        }
+
         if (index !== null) { // allows inserting in specific slots
             index = ((index % inventorySlots) + inventorySlots) % inventorySlots; 
             const slot = this.slots[index];
@@ -160,14 +161,17 @@ export class Inventory {
         this.slots[index].count = count;
         return new Result(true, "");
     }
-    isFull() {
+    willFit(item, count) {
+        let canFit = 0;
         for (let i = 0; i < inventorySlots; i++) {
             const slot = this.slots[i];
             if (slot.isEmpty()) {
-                return false;
+                canFit += stackSize;
+            } else if (slot.item.id == item.id) {
+                canFit += stackSize - count;
             }
         }
-        return true;
+        return canFit >= count;
     }
 }
 
