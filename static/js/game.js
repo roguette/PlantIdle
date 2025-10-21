@@ -1,17 +1,9 @@
-const inventorySlots = 30;
-const stackSize = 99;
+import { Result } from "./api.js";
 
-class Result {
-    success;
-    message;
-    
-    constructor(success, message) {
-        this.success = success;
-        this.message = message;
-    }
-}
+export const inventorySlots = 30;
+export const stackSize = 99;
 
-class Item {
+export class Item {
     // from data.json
     name;
     id;
@@ -31,7 +23,7 @@ class Item {
         this.isSpecial = isSpecial;
     }
 }
-class InventorySlot {
+export class InventorySlot {
     count;
     item;
 
@@ -51,7 +43,7 @@ class InventorySlot {
         return isSlotEmpty;
     }
 }
-class Inventory {
+export class Inventory {
     slots = [];
 
     constructor() {
@@ -79,7 +71,12 @@ class Inventory {
             }
             
         }
-        console.table(toShow);
+        // console.table does not work without the timeout
+
+        setTimeout(() => {
+            console.table(toShow);  
+        }, 1);
+
     }
     addItem(addedItem, toAdd = 1, index = null) {
         if (this.isFull()) {
@@ -174,7 +171,15 @@ class Inventory {
     }
 }
 
+export function returnTestItem(name = "default"){
+    return new Item({
+        name: `Test item "${name}"`,
+        id: `test_${name}`,
+        itemType: "testing_item",
+        buyPrice: 0,
+        sellPrice: 0,
+        growthTime: 0,
+        isSpecial: false,
+    })
+}
 
-$(()=>{
-    console.log(`DOMContentLoaded`);
-})
