@@ -14,16 +14,64 @@ body{
 }
 
 #left{
-    display: flex;
-    flex-direction: column;
-    background-color: red;
-    min-width: 35%;
+    min-width: 37%;
     height: 100%;
     padding: 20px 15px;
+    position: relative;
+    background-color: red;
+}
+
+#cards{
+    height: 100%;
+}
+
+#inventory-card,
+#shop-card,
+#settings-card{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 }
 
-h1.inv{
+#shop-card,
+#settings-card{
+    display: none;
+}
+
+#tabs{
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    padding: 10px 15px 10px 0;
+    gap: 10px;
+    overflow: hidden;
+}
+
+#tabs button{
+    height: 100px;
+    width: 120px;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    transition-duration: .2s;
+    z-index: inherit;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 15px;
+}
+
+#shop-tab,
+#settings-tab{
+    margin-left: -30px;
+}
+
+h1.heading{
     background-color: green;
     height: 60px;
     font-size: 50px;
@@ -68,6 +116,7 @@ h1.inv{
     gap: 20px;
     padding: 10px;
 }
+
 
 @media (max-width: 1300px) {
 

@@ -16,4 +16,16 @@ inv.printItems();
 $(async ()=>{
     console.log(`DOMContentLoaded`);
     console.log(await Api.getItems());
+
+    // Changing tabs mechanism
+    $("#tabs button").on("click", function(e){
+        const idClicked = '#' + e.target.id;
+        const idToShow = idClicked.replace("tab", "card");
+        
+        $("#cards").children().css("display", "none");
+        $(idToShow).css("display", "flex");
+
+        $("#tabs").children().css("margin-left", "-30px");
+        $(idClicked).css("margin-left", "0");
+    })
 })
