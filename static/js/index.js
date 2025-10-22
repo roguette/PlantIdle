@@ -1,5 +1,5 @@
-import { Inventory, returnTestItem } from "./game.js";
-import { Api } from "./api.js";
+import { Inventory, returnTestItem, inventorySlots } from "./game.js";
+import { Api, lastItemData } from "./api.js";
 
 let inv = new Inventory();
 inv.addItem(returnTestItem("A"), 76*29);
@@ -17,7 +17,20 @@ $(async ()=>{
     console.log(`DOMContentLoaded`);
     console.log(await Api.getItems());
 
-    // Changing tabs 
+    for (let i = 0; i < inventorySlots; i++) {
+        let newSlot = $("<div>").addClass("kafelek").css("animation-delay",`${Math.sqrt(i)/25}s`)
+        $("#inventory").append(newSlot);
+    }
+
+    for (let i = 0; i < lastItemData.items.fertilizers.length; i++) {
+        let newSlot = $("<div>").addClass("fart").css("animation-delay",`${i/7}s`)
+        $("#fertilizers").append(newSlot);
+    }
+
+
+
+
+    // Changing tabs mechanism
     $("#tabs button").on("click", function(e){
         const idClicked = '#' + e.target.id;
         const idToShow = idClicked.replace("tab", "card");
