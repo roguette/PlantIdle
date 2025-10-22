@@ -17,7 +17,7 @@ $(async ()=>{
     console.log(`DOMContentLoaded`);
     console.log(await Api.getItems());
 
-    // Changing tabs mechanism
+    // Changing tabs 
     $("#tabs button").on("click", function(e){
         const idClicked = '#' + e.target.id;
         const idToShow = idClicked.replace("tab", "card");
@@ -27,5 +27,35 @@ $(async ()=>{
 
         $("#tabs").children().css("margin-left", "-30px");
         $(idClicked).css("margin-left", "0");
-    })
+    });
+
+    // Shop filters
+    $("#shop-filters button").on("click", function(e){
+        const clickedEle = e.target;
+        const buttonType = $(clickedEle).attr("button-type");
+
+        if($(clickedEle).hasClass("chosen-filter")) {
+            $(clickedEle).removeClass("chosen-filter");
+
+            // mechanizm ukrywania/pokazania okienek
+            $("#shop-items").children().show();
+        } else {
+            $("#shop-filters").children().removeClass("chosen-filter");
+            $(clickedEle).addClass("chosen-filter");
+
+            // mechanizm ukrywania/pokazania okienek
+            $("#shop-items").children().hide();
+            $("div[type=" + buttonType +"]").show();
+        }
+    });
+
+    // Shop search
+    $("#shop-search").on("input", function(e){
+        const searchInput = this.value.toLowerCase();
+        
+        $("#shop-items").children().each(function() {
+            $(this).show();
+            if(!$(this).attr("name").includes(searchInput)) $(this).hide();
+        });
+    });
 })

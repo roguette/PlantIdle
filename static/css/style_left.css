@@ -40,6 +40,31 @@ body{
     display: none;
 }
 
+#shop{
+    background-color: orange;
+    width: 100%;
+    padding: 10px 15px;
+}
+
+#shop-filters{
+    background-color: orangered;
+    height: 75px;
+    padding: 13px;
+}
+
+.shop-button{
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: none;
+
+}
+
+.chosen-filter{
+    background-color: orangered;
+}
+
+
 #tabs{
     position: absolute;
     right: 0;
