@@ -58,7 +58,7 @@ $(async ()=>{
 
             // mechanizm ukrywania/pokazania okienek
             $("#shop-items").children().hide();
-            $("div[type=" + buttonType +"]").show();
+            $("#shop-items div[type=" + buttonType +"]").show();
         }
     });
 
@@ -71,4 +71,25 @@ $(async ()=>{
             if(!$(this).attr("name").includes(searchInput)) $(this).hide();
         });
     });
+
+    // Merchant 
+    // localStorage.clear();   //DELETE/COMMENT WHEN NOT TESTING
+    if(localStorage.getItem("merchantStart") == null){
+        localStorage.setItem("merchantStart", Date.now());
+    }
+    let merchantStart = localStorage.getItem("merchantStart");
+    setInterval(function(){
+        const timeDiff = Date.now() - merchantStart;
+        const counter = 600 - Math.floor(timeDiff/1000);
+        const minutes = Math.floor(counter/60);
+        const seconds = counter - minutes*60;
+        console.log(`${minutes}:${seconds <= 9 ? "0" : ""}${seconds}`);
+
+        if(timeDiff >= 600000){ //600000
+            localStorage.setItem("merchantStart", Date.now());
+            merchantStart = localStorage.getItem("merchantStart");
+            
+            //refresh
+        }
+    }, 1000)
 })
