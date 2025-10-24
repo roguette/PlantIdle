@@ -43,7 +43,7 @@ export class InventorySlot {
         return isSlotEmpty;
     }
 }
-export class Inventory {
+class Inventory {
     slots = [];
 
     constructor() {
@@ -174,6 +174,19 @@ export class Inventory {
         return canFit >= count;
     }
 }
+
+export class Game {
+    inventory; // class Inventory
+    money; 
+
+
+    constructor() {
+        this.inventory = new Inventory()
+        this.money = 250; 
+    }
+}
+
+
 
 export function returnTestItem(name = "default"){
     return new Item({

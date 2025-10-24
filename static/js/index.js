@@ -1,4 +1,4 @@
-import { Inventory, returnTestItem, inventorySlots } from "./game.js";
+import { Game } from "./game.js";
 import { Api } from "./api.js";
 
 async function loadInventoryHTML() {

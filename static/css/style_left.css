@@ -6,8 +6,14 @@
     --lighter-background: #f6f6f6;
     --border: #d2cfe0;
     --gray-text: #ccc;
-}
+    
 
+    --secondary: #a02f83;
+
+}
+.secondary-color {
+    color: var(--secondary);
+}
 
 html, body{
     width: 100%;
