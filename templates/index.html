@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
     <link rel="stylesheet" href="static/css/style_left.css">
+    <link rel="stylesheet" href="static/css/custom_select.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/static/js/index.js" type="module"></script>
 </head>
@@ -21,15 +23,24 @@
                 <h1 class="heading">Sklep</h1>
                 <div id="shop">
                     <div id="shop-filters">
-                        <button class="shop-button" button-type="tree">Drzewa</button>
-                        <button class="shop-button" button-type="fruit">Owoce</button>
-                        <button class="shop-button" button-type="vegetable">Warzywa</button>
-                        <button class="shop-button" button-type="flower">Kwiaty</button>
-
-                        <input type="text" name="" id="shop-search">
+                        <div id="search-bar">
+                            <span class="material-symbols-outlined" style="color: var(--gray-text);">search</span>
+                            <input type="text" name="" id="shop-search" placeholder="Szukaj...">
+                        </div>
+                        <div class="custom-select">
+                            <select id="shop-filter-select">
+                                <option value="everything">Wszystko</option>
+                                <option value="tree">Drzewa</option>
+                                <option value="fruit">Owoce</option>
+                                <option value="vegetable">Warzywa</option>
+                                <option value="flower">Kwiaty</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <div id="shop-items"></div>
+                    <div id="shop-items-container">
+                        <div id="shop-items"></div>
+                    </div>
+                    
                 </div>
     
                 <h1 class="heading">Merchant</h1>
