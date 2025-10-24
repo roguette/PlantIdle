@@ -20,9 +20,9 @@ async function loadShopHTML() {
 
     $("#shop-items").html("");
     console.log(items.message.items)
-    items.message.items.plants.forEach((plant) => {
+    items.message.items.plants.forEach((plant, i) => {
         // <div class="shop-item" type="fruit" name="winogrono">1. Owoc - winogrono</div>
-        let container = $("<div>").addClass("shop-item").attr("type", plant.item_type).attr("name", plant.id).text(plant.name)
+        let container = $("<div>").addClass("shop-item").attr("type", plant.item_type).attr("name", plant.id).text(plant.name).css("animation-delay",`${i/50}s`)
         $("#shop-items").append(container)
     });
     
@@ -52,22 +52,18 @@ $(async ()=>{
     });
 
     // Shop filters
-    $("#shop-filters button").on("click", function(e){
-        const clickedEle = e.target;
-        const buttonType = $(clickedEle).attr("button-type");
-
-        if($(clickedEle).hasClass("chosen-filter")) {
-            $(clickedEle).removeClass("chosen-filter");
-
-            // mechanizm ukrywania/pokazania okienek
+    $("#shop-filter-select").on("input", function(e){
+        const clickedElement = e.target;
+        //const buttonType = $(clickedEle).attr("button-type");
+        const filterValue = $("#shop-filter-select").val()
+        
+        if (!filterValue || filterValue === "everything") {
+            $("#shop-items").children().hide();
             $("#shop-items").children().show();
         } else {
-            $("#shop-filters").children().removeClass("chosen-filter");
-            $(clickedEle).addClass("chosen-filter");
-
             // mechanizm ukrywania/pokazania okienek
             $("#shop-items").children().hide();
-            $("#shop-items div[type=" + buttonType +"]").show();
+            $("#shop-items div[type=" + filterValue +"]").show();
         }
     });
 
@@ -92,7 +88,7 @@ $(async ()=>{
         const counter = 600 - Math.floor(timeDiff/1000);
         const minutes = Math.floor(counter/60);
         const seconds = counter - minutes*60;
-        console.log(`${minutes}:${seconds <= 9 ? "0" : ""}${seconds}`);
+        //console.log(`${minutes}:${seconds <= 9 ? "0" : ""}${seconds}`);
 
         if(timeDiff >= 600000){ //600000
             localStorage.setItem("merchantStart", Date.now());

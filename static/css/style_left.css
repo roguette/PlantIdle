@@ -70,13 +70,13 @@ body{
 
 #shop{
     width: 100%;
-    padding: 10px 16px;
+    padding: 12px 16px;
     max-height: 40%;
 }
 
 #shop-filters{
     display: flex;
-    gap: 10px;
+    gap: 12px;
     height: 75px;
     padding: 12px;
 }
@@ -89,6 +89,7 @@ body{
 
 }
 #search-bar {
+    height: 48px;
     font-size: 1.2rem;
     padding: 0.675em 6em 0.675em 1em;
     background-color: #fff;
@@ -97,7 +98,7 @@ body{
     color: #000;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     cursor: pointer;
     flex-grow: 1;
 }
@@ -111,9 +112,13 @@ body{
     border: 1px solid var(--border);
     border-radius: 0.25rem;
     margin: 12px;
+    margin-top: 0;
     padding: 10px;
 }
-
+.shop-item {
+    opacity: 0;
+    animation: appear 0.1s forwards;
+}
 .chosen-filter{
     background-color: orangered;
 }
@@ -125,7 +130,7 @@ body{
     height: 350px;
     width: 120px;
     padding: 10px 15px 10px 0;
-    gap: 10px;
+    gap: 12px;
     overflow: hidden;
 }
 
