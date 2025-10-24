@@ -1,4 +1,3 @@
-
 export class Result {
     success;
     message;
@@ -7,18 +6,28 @@ export class Result {
         this.success = success;
         this.message = message;
     }
+
+    getMessage() {
+        return this.message;
+    }
 }
-export let lastItemData = {};
+let lastItemData = null;
+let lastFetchTimeSeconds = 0;
 export class Api {
     static async getItems() {
+        if (lastItemData !== null) { // Fixed condition
+            return lastItemData;
+        }
         const response = await fetch("/api/get_items", {
             method: "GET"
         });
         if (!response.ok) {
             return new Result(false, `getItems failed: ${response.status}`);
         } else {
-            lastItemData = await response.json()
-            return new Result(true, lastItemData);
+            let json = await response.json();
+            lastItemData = new Result(true, json); // Cache the result
+            lastFetchTimeSeconds = new Date().getSeconds();
+            return lastItemData; // Return cached result
         }
     }
 }

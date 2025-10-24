@@ -1,33 +1,42 @@
 import { Inventory, returnTestItem, inventorySlots } from "./game.js";
-import { Api, lastItemData } from "./api.js";
+import { Api } from "./api.js";
 
-let inv = new Inventory();
-inv.addItem(returnTestItem("A"), 76*29);
-inv.printItems();
-inv.addItem(returnTestItem("A"), 99);
-inv.printItems();
-inv.addItem(returnTestItem("B"), 399);
-inv.printItems();
-inv.addItem(returnTestItem("B"), 99);
-inv.printItems();
+async function loadInventoryHTML() {
+    for (let i = 0; i < inventorySlots; i++) {
+        let newSlot = $("<div>").addClass("kafelek").css("animation-delay",`${Math.sqrt(i)/25}s`)
+        $("#inventory").append(newSlot);
+    }
+    const items = await Api.getItems();
+
+    for (let i = 0; i < await items.message.items.fertilizers.length; i++) {
+        let newSlot = $("<div>").addClass("fart").css("animation-delay",`${i/7}s`)
+        $("#fertilizers").append(newSlot);
+    }
+
+}
+
+async function loadShopHTML() {
+    const items = await Api.getItems();
+
+    $("#shop-items").html("");
+    console.log(items.message.items)
+    items.message.items.plants.forEach((plant) => {
+        // <div class="shop-item" type="fruit" name="winogrono">1. Owoc - winogrono</div>
+        let container = $("<div>").addClass("shop-item").attr("type", plant.item_type).attr("name", plant.id).text(plant.name)
+        $("#shop-items").append(container)
+    });
+    
+
+}
+
 
 
 
 $(async ()=>{
     console.log(`DOMContentLoaded`);
-    console.log(await Api.getItems());
 
-    for (let i = 0; i < inventorySlots; i++) {
-        let newSlot = $("<div>").addClass("kafelek").css("animation-delay",`${Math.sqrt(i)/25}s`)
-        $("#inventory").append(newSlot);
-    }
-
-    for (let i = 0; i < lastItemData.items.fertilizers.length; i++) {
-        let newSlot = $("<div>").addClass("fart").css("animation-delay",`${i/7}s`)
-        $("#fertilizers").append(newSlot);
-    }
-
-
+    loadInventoryHTML();
+    loadShopHTML();
 
 
     // Changing tabs mechanism

@@ -1,174 +1,150 @@
 {
-    "plants": {
-        "flowers":[
-            {
-
-                "name": "Mak",
-                "id": "mak",
-                "item_type": "flower",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Słonecznik",
-                "id": "slonecznik",
-                "item_type": "flower",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Tulipan",
-                "id": "tulipan",
-                "item_type": "flower",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Zawilec",
-                "id": "zawilec",
-                "item_type": "flower",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Narcyz",
-                "id": "narcyz",
-                "item_type": "flower",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            }
-        ],
-        "fruits":[
-            {
-
-                "name": "Winogrona",
-                "id": "winogrona",
-                "item_type": "fruit",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Truskawka",
-                "id": "truskawka",
-                "item_type": "fruit",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Arbuz",
-                "id": "arbuz",
-                "item_type": "fruit",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Borówki",
-                "id": "borowki",
-                "item_type": "fruit",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            }
-        ],
-        "vegetables":[
-            {
-
-                "name": "Pomidor",
-                "id": "pomidor",
-                "item_type": "vegetable",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Ziemniak",
-                "id": "ziemniak",
-                "item_type": "vegetable",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Ogórek",
-                "id": "ogorek",
-                "item_type": "vegetable",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Dynia",
-                "id": "dynia",
-                "item_type": "vegetable",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            }
-        ],
-        "trees":[
-            {
-
-                "name": "Jabłoń",
-                "id": "jablon",
-                "item_type": "tree",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Grusza",
-                "id": "grusza",
-                "item_type": "tree",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            },
-            {
-
-                "name": "Wiśnia",
-                "id": "wisnia",
-                "item_type": "tree",
-                "buy_price": 10,
-                "sell_price": 20,
-                "growth_time": 100,
-                "is_special": false 
-            }
-        ]
-    },
+    "plants": [
+        {
+            "name": "Jabłoń",
+            "id": "jablon",
+            "item_type": "tree",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Grusza",
+            "id": "grusza",
+            "item_type": "tree",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Wiśnia",
+            "id": "wisnia",
+            "item_type": "tree",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Mak",
+            "id": "mak",
+            "item_type": "flower",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Słonecznik",
+            "id": "slonecznik",
+            "item_type": "flower",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Tulipan",
+            "id": "tulipan",
+            "item_type": "flower",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Zawilec",
+            "id": "zawilec",
+            "item_type": "flower",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Narcyz",
+            "id": "narcyz",
+            "item_type": "flower",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Winogrona",
+            "id": "winogrona",
+            "item_type": "fruit",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Truskawka",
+            "id": "truskawka",
+            "item_type": "fruit",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Arbuz",
+            "id": "arbuz",
+            "item_type": "fruit",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Borówki",
+            "id": "borowki",
+            "item_type": "fruit",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Pomidor",
+            "id": "pomidor",
+            "item_type": "vegetable",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Ziemniak",
+            "id": "ziemniak",
+            "item_type": "vegetable",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Ogórek",
+            "id": "ogorek",
+            "item_type": "vegetable",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        },
+        {
+            "name": "Dynia",
+            "id": "dynia",
+            "item_type": "vegetable",
+            "buy_price": 10,
+            "sell_price": 20,
+            "growth_time": 100,
+            "is_special": false
+        }
+    ],
     "fertilizers": [
         {
             "name": "Nawóz Kwaśny",
@@ -199,7 +175,6 @@
                 }
             ],
             "description": "Ten nawóz jest korzystny dla kwiatów i drzew, lecz nie należy używać go do owoców i warzyw."
-            
         },
         {
             "name": "Nawóz Zasadowy",
