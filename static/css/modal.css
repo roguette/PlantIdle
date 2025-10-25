@@ -22,6 +22,7 @@
 }
 .modal-info {
     display: flex;
+    gap: 24px;
 }
 .modal-text-container {
     display: flex;

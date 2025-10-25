@@ -26,8 +26,8 @@ class Modal {
         modalInfo.append(textContainer);
 
         if (this.canCancel) {
-            let closeButton = $("<span>").addClass("material-symbols-outlined").text("close"); 
-            closeButton.on("click", () => this.closeModal()); // Add event listener to close the modal
+            let closeButton = $("<span>").addClass("material-symbols-outlined").text("close").css("margin-left","auto"); 
+            closeButton.on("click", () => this.closeModal());
             modalInfo.append(closeButton);
         }
 
@@ -56,11 +56,10 @@ export class InfoModal extends Modal {
         this.closedCallback = closedCallback;
 
 
-        let closeBtn = $("<button>").addClass("modal-button button-primary").text(this.buttonText);
-        console.log(this.buttonContainer)
-        this.buttonContainer.append(closeBtn);
+        let closeButton = $("<button>").addClass("modal-button button-primary").text(this.buttonText);
+        this.buttonContainer.append(closeButton);
 
-        closeBtn.on("click", () => {
+        closeButton.on("click", () => {
             this.closeModal();
             if (this.closedCallback) {
                 this.closedCallback();
@@ -84,6 +83,29 @@ export class YesNoModal extends Modal {
         this.suggestedText = suggestedText;
         this.neutralText = neutralText;
         this.closedCallback = closedCallback;
+
+        let neutralButton = $("<button>").addClass("modal-button button-neutral").text(this.neutralText);
+        this.buttonContainer.append(neutralButton);
+
+        neutralButton.on("click", () => {
+            this.closeModal();
+            if (this.closedCallback) {
+                this.closedCallback(this.neutralText);
+            }
+        });
+
+        let suggestedButton = $("<button>").addClass("modal-button button-primary").text(this.suggestedText);
+        this.buttonContainer.append(suggestedButton);
+
+        suggestedButton.on("click", () => {
+            this.closeModal();
+            if (this.closedCallback) {
+                this.closedCallback(this.suggestedText);
+            }
+        });
+
+
+
     }
 }
 
@@ -97,11 +119,80 @@ export class NumberModal extends Modal {
 
     onValueChosenCallback;
 
-    constructor({title, message, canCancel = true, minAmount = 0, maxAmount, buttonText, onValueChosenCallback}) {
+    constructor({title, message, canCancel = true, minAmount = 0, maxAmount = 100, buttonText, onValueChosenCallback}) {
         super(title, message, canCancel);
         this.minAmount = minAmount;
         this.maxAmount = maxAmount;
         this.buttonText = buttonText;
         this.onValueChosenCallback = onValueChosenCallback;
+
+        let minButton = $("<button>").addClass("modal-button button-neutral")
+            .append($("<span>").addClass("material-symbols-outlined").text("keyboard_double_arrow_left"));
+        this.buttonContainer.append(minButton);
+
+        let decrementButton = $("<button>").addClass("modal-button button-neutral")
+            .append($("<span>").addClass("material-symbols-outlined").text("keyboard_arrow_left"));
+        this.buttonContainer.append(decrementButton);
+
+        let editableDiv = $("<div>").attr("contenteditable", "true").addClass("force-input").text("0");
+        this.buttonContainer.append(editableDiv);
+
+        let incrementButton = $("<button>").addClass("modal-button button-neutral")
+            .append($("<span>").addClass("material-symbols-outlined").text("keyboard_arrow_right"));
+        this.buttonContainer.append(incrementButton);
+
+        let maxButton = $("<button>").addClass("modal-button button-neutral")
+            .append($("<span>").addClass("material-symbols-outlined").text("keyboard_double_arrow_right"));
+        this.buttonContainer.append(maxButton);
+
+        let suggestedButton = $("<button>").addClass("modal-button button-primary").text(this.buttonText);
+        this.buttonContainer.append(suggestedButton);
+
+        // actual logic
+
+        let current = 0;
+
+        function renderInput() {
+            if (current < minAmount) current = minAmount;
+            if (current > maxAmount) current = maxAmount;
+
+            editableDiv.text(current)
+        }
+        editableDiv.on("input", () => {
+            let rawText = editableDiv.text(); 
+            let contentWithNumbers = rawText.replace(/[^0-9]/g, "");
+
+            current = parseInt(contentWithNumbers);
+            renderInput();
+        })
+
+        minButton.on("click", ()=>{
+            current = this.minAmount;
+            renderInput();
+        })
+
+        decrementButton.on("click", ()=>{
+            current--;
+            renderInput();
+        })
+
+        incrementButton.on("click", ()=>{
+            current++;
+            renderInput();
+        })
+
+        maxButton.on("click", ()=>{
+            current = this.maxAmount;
+            renderInput();
+        })
+
+
+        suggestedButton.on("click", () => {
+            this.closeModal();
+            if (this.onValueChosenCallback) {
+                this.onValueChosenCallback(current);
+            }
+        });
+
     }
 }

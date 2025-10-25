@@ -1,6 +1,6 @@
 import { Game } from "./game.js";
 import { Api } from "./api.js";
-import { InfoModal } from "./modal.js";
+import { InfoModal, NumberModal, YesNoModal } from "./modal.js";
 
 async function loadInventoryHTML() {
     for (let i = 0; i < inventorySlots; i++) {
@@ -35,10 +35,38 @@ async function loadShopHTML() {
 
 $(async ()=>{
     console.log(`DOMContentLoaded`);
-    new InfoModal({
-        title: "Warning: Bugs ahead",
-        message: "Lorem Ipsum"
-    });
+    // new InfoModal({
+    //     title: "Warning: Bugs ahead",
+    //     message: "Lorem Ipsum"
+    // });
+
+    // new YesNoModal({
+    //     title: "Choose yes or no",
+    //     message: "Example question",
+    //     closedCallback: (value) => {
+    //         new InfoModal({
+    //             title: "You made a choice",
+    //             message: `You chose ${value}`
+    //         })
+    //     }
+    // })
+
+    // new NumberModal({
+    //     title: "Shop",
+    //     message: "How much do you want to buy",
+    //     minAmount: 0,
+    //     maxAmount: 100,
+    //     buttonText: "Buy",
+    //     onValueChosenCallback: (value) => {
+    //         new InfoModal({
+    //             title: "You made a choice",
+    //             message: `You chose ${value}`
+    //         })
+    //     }
+
+    // })
+
+    
     loadInventoryHTML();
     loadShopHTML();
 
