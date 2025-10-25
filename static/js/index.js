@@ -2,6 +2,8 @@ import { Game } from "./game.js";
 import { Api } from "./api.js";
 import { InfoModal, NumberModal, YesNoModal } from "./modal.js";
 
+const inventorySlots = 30 // deleted intentionally or moved elsewhere without appropriate changes
+
 async function loadInventoryHTML() {
     for (let i = 0; i < inventorySlots; i++) {
         let newSlot = $("<div>").addClass("kafelek").css("animation-delay",`${Math.sqrt(i)/25}s`)

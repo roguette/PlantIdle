@@ -115,18 +115,10 @@ body{
     height: 75px;
     padding: 12px;
 }
-
-.shop-button{
-    height: 50px;
-    width: 100px;
-    border: none;
-    border-radius: none;
-
-}
 #search-bar {
     height: 48px;
     font-size: 1.2rem;
-    padding: 0.675em 6em 0.675em 1em;
+    padding: 0.675em 6em 0.675em 1em;  /* NEEDS CHANGING*/
     background-color: #fff;
     border: 1px solid var(--border);
     border-radius: 0.25rem;
@@ -154,10 +146,6 @@ body{
     opacity: 0;
     animation: appear 0.1s forwards;
 }
-.chosen-filter{
-    background-color: orangered;
-}
-
 
 #tabs{
     display: flex;
