@@ -1,5 +1,6 @@
 import { Game } from "./game.js";
 import { Api } from "./api.js";
+import { InfoModal } from "./modal.js";
 
 async function loadInventoryHTML() {
     for (let i = 0; i < inventorySlots; i++) {
@@ -34,7 +35,10 @@ async function loadShopHTML() {
 
 $(async ()=>{
     console.log(`DOMContentLoaded`);
-
+    new InfoModal({
+        title: "Warning: Bugs ahead",
+        message: "Lorem Ipsum"
+    });
     loadInventoryHTML();
     loadShopHTML();
 
