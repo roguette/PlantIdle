@@ -1,4 +1,4 @@
-import { Game } from "./game.js";
+import { Game, returnTestItem } from "./game.js";
 import { Api } from "./api.js";
 import { InfoModal, NumberModal, YesNoModal } from "./modal.js";
 
@@ -6,7 +6,7 @@ const inventorySlots = 30 // deleted intentionally or moved elsewhere without ap
 
 async function loadInventoryHTML() {
     for (let i = 0; i < inventorySlots; i++) {
-        let newSlot = $("<div>").addClass("kafelek").css("animation-delay",`${Math.sqrt(i)/25}s`)
+        let newSlot = $("<div>").addClass("inventory-slot").css("animation-delay",`${Math.sqrt(i)/25}s`)
         $("#inventory").append(newSlot);
     }
     const items = await Api.getItems();
@@ -72,7 +72,9 @@ $(async ()=>{
     loadInventoryHTML();
     loadShopHTML();
 
-
+    let game = new Game();
+    game.inventory.addItem(returnTestItem(),1);
+    game.inventory.printItems();
     // Changing tabs mechanism
     $("#tabs button").on("click", function(e){
         const idClicked = '#' + e.target.id;

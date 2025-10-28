@@ -12,8 +12,10 @@ export class Item {
     sellPrice;
     growthTime;
     isSpecial;
+    treeIcon;
+    itemIcon;
 
-    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial}) {
+    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon}) {
         this.name = name;
         this.id = id;
         this.itemType = itemType;
@@ -21,6 +23,8 @@ export class Item {
         this.sellPrice = sellPrice;
         this.growthTime = growthTime;
         this.isSpecial = isSpecial;
+        this.treeIcon = treeIcon;
+        this.itemIcon = itemIcon;
     }
 }
 export class InventorySlot {
@@ -140,12 +144,12 @@ class Inventory {
             slot.count = willAdd;
             toAdd -= willAdd;
         }
+        this.render();
         if (toAdd > 0) {
             return new Result(false, "Not all items could be added");
         } else if (toAdd === 0) {
             return new Result(true, "");
         }
-
 
     }
     setItemCount(index, count) {
@@ -159,6 +163,7 @@ class Inventory {
             return new Result(false, "Cannot set count of item which doesn't exist");
         }
         this.slots[index].count = count;
+        this.render();
         return new Result(true, "");
     }
     willFit(item, count) {
@@ -172,6 +177,27 @@ class Inventory {
             }
         }
         return canFit >= count;
+    }
+    render() {
+        $("#inventory").children().each((index, element) => {
+            //console.log($(this))
+            console.log(this.slots)
+
+            if (!this.slots[index].isEmpty()) {
+                let iconFileName = this.slots[index].item.itemIcon || "placeholder.svg";
+                let labelFileName = this.slots[index].item.labelIcon || "placeholder.svg";
+                let labelContent = this.slots[index].item.labelContent || null;
+
+                let image = $("<img>").attr("src","/static/svg/" + iconFileName).addClass("slot-image");
+                $(element).append(image);
+
+                let countDiv = $("<div>").addClass("count").text(this.slots[index].count);
+                $(element).append(countDiv);
+
+                let label = $("<img>").attr("src","/static/svg/" + labelFileName).addClass("slot-label")
+                $(element).append(label);
+            }
+        });
     }
 }
 
