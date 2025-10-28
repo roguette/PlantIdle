@@ -7,7 +7,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Grusza",
@@ -16,7 +18,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Wiśnia",
@@ -25,7 +29,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "cherry.svg"
         },
         {
             "name": "Mak",
@@ -34,7 +40,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Słonecznik",
@@ -43,7 +51,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Tulipan",
@@ -52,7 +62,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Zawilec",
@@ -61,7 +73,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Narcyz",
@@ -70,7 +84,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Winogrona",
@@ -79,7 +95,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "grape.svg"
         },
         {
             "name": "Truskawka",
@@ -88,7 +106,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Arbuz",
@@ -97,7 +117,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Borówki",
@@ -106,7 +128,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Pomidor",
@@ -115,7 +139,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Ziemniak",
@@ -124,7 +150,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Ogórek",
@@ -133,7 +161,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         },
         {
             "name": "Dynia",
@@ -142,7 +172,9 @@
             "buy_price": 10,
             "sell_price": 20,
             "growth_time": 100,
-            "is_special": false
+            "is_special": false,
+            "tree_icon": "placeholder.svg",
+            "item_icon": "placeholder.svg"
         }
     ],
     "fertilizers": [
