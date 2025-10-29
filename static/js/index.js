@@ -77,9 +77,9 @@ $(async ()=>{
     game.inventory.addItem(returnTestItem(),1);
     game.inventory.printItems();
 
-    setInterval(function(){
-        game.inventory.addItem(returnTestItem(new Date()),1);
-    }, 1000)
+    // setInterval(function(){
+    //     game.deltaBalance(100);
+    // }, 1000)
 
     let tooltips = new Tooltips();
 

@@ -210,12 +210,31 @@ class Inventory {
 
 export class Game {
     inventory; // class Inventory
-    money; 
+    #balance; 
 
 
     constructor() {
         this.inventory = new Inventory()
-        this.money = 250; 
+        this.#balance = 250; 
+    }
+
+    #renderBalance(difference) {
+        $("#balance").text(Math.round(this.#balance + difference))
+    }
+
+    getBalance() {
+        return this.#balance;
+    }
+
+    deltaBalance(amount) {
+        const newBalance = this.#balance + amount;
+        if (newBalance < 0) {
+            return new Result(false, "Cannot afford this operation")
+        } else {
+            this.#renderBalance(amount);
+            this.#balance = newBalance;
+            return new Result(true, newBalance);
+        }
     }
 }
 

@@ -258,7 +258,7 @@ h1.heading{
     padding: 10px;
 }
 
-#moneycounter {
+#balance-container {
     position: absolute;
     right: 10px;
     top: 10px;
