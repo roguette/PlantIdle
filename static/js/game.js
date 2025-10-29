@@ -14,8 +14,9 @@ export class Item {
     isSpecial;
     treeIcon;
     itemIcon;
+    itemDescription;
 
-    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon}) {
+    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon, itemDescription}) {
         this.name = name;
         this.id = id;
         this.itemType = itemType;
@@ -25,6 +26,7 @@ export class Item {
         this.isSpecial = isSpecial;
         this.treeIcon = treeIcon;
         this.itemIcon = itemIcon;
+        this.itemDescription = itemDescription;
     }
 }
 export class InventorySlot {
@@ -181,12 +183,16 @@ class Inventory {
     render() {
         $("#inventory").children().each((index, element) => {
             //console.log($(this))
-            console.log(this.slots)
-
+            console.log(this.slots);
+            element.setAttribute("hasTooltip", false);
             if (!this.slots[index].isEmpty()) {
                 let iconFileName = this.slots[index].item.itemIcon || "placeholder.svg";
                 let labelFileName = this.slots[index].item.labelIcon || "placeholder.svg";
-                let labelContent = this.slots[index].item.labelContent || null;
+                let itemDescription = this.slots[index].item.itemDescription || null;
+                
+                element.setAttribute("hasTooltip", true);
+                element.setAttribute("item-description", itemDescription);
+                element.setAttribute("item-name", this.slots[index].item.name);
 
                 let image = $("<img>").attr("src","/static/svg/" + iconFileName).addClass("slot-image");
                 $(element).append(image);
@@ -223,6 +229,7 @@ export function returnTestItem(name = "default"){
         sellPrice: 0,
         growthTime: 0,
         isSpecial: false,
+        itemDescription: "A debug item"
     })
 }
 

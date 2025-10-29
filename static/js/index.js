@@ -1,6 +1,7 @@
 import { Game, returnTestItem } from "./game.js";
 import { Api } from "./api.js";
 import { InfoModal, NumberModal, YesNoModal } from "./modal.js";
+import { Tooltips } from "./tooltips.js";
 
 const inventorySlots = 30 // deleted intentionally or moved elsewhere without appropriate changes
 
@@ -75,6 +76,11 @@ $(async ()=>{
     let game = new Game();
     game.inventory.addItem(returnTestItem(),1);
     game.inventory.printItems();
+
+    
+
+    let tooltips = new Tooltips();
+
     // Changing tabs mechanism
     $("#tabs button").on("click", function(e){
         const idClicked = '#' + e.target.id;

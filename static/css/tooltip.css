@@ -1,0 +1,24 @@
+.tooltip {
+    width: 200px;
+    min-height: 100px;
+    position: absolute;
+    border-radius: 0px 8px 8px 8px;
+    background-color: var(--white);
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    flex-direction: column;
+    pointer-events: none;
+    border: 1px solid var(--secondary);
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+.tooltip-hidden {
+    opacity: 0;
+}
+.tooltip-visible {
+    opacity: 1;
+}
