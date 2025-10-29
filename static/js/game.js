@@ -185,6 +185,7 @@ class Inventory {
             //console.log($(this))
             console.log(this.slots);
             element.setAttribute("hasTooltip", false);
+            element.innerHTML = "";
             if (!this.slots[index].isEmpty()) {
                 let iconFileName = this.slots[index].item.itemIcon || "placeholder.svg";
                 let labelFileName = this.slots[index].item.labelIcon || "placeholder.svg";
