@@ -1,4 +1,4 @@
-import { Result } from "./api.js";
+import { Result, Api } from "./api.js";
 
 export const inventorySlots = 30;
 export const stackSize = 99;
@@ -15,8 +15,10 @@ export class Item {
     treeIcon;
     itemIcon;
     itemDescription;
+    pestProtection;
+    effects;
 
-    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon, itemDescription}) {
+    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon, itemDescription, pestProtection, effects}) {
         this.name = name;
         this.id = id;
         this.itemType = itemType;
@@ -27,8 +29,28 @@ export class Item {
         this.treeIcon = treeIcon;
         this.itemIcon = itemIcon;
         this.itemDescription = itemDescription;
+        this.pestProtection = pestProtection;
+        this.effects = effects;
     }
 }
+
+export function createItemFromData(data) {
+    return new Item({
+        name: data.name,
+        id: data.id,
+        itemType: data.item_type,
+        buyPrice: data.buy_price,
+        sellPrice: data.sell_price,
+        growthTime: data.growth_time,
+        isSpecial: data.is_special,
+        treeIcon: data.tree_icon,
+        itemIcon: data.item_icon,
+        itemDescription: data.description,
+        pestProtection: data.pest_protection,
+        effects: data.effects
+    });
+}
+
 export class InventorySlot {
     count;
     item;
@@ -180,6 +202,29 @@ class Inventory {
         }
         return canFit >= count;
     }
+    async addItemById(id, count) {
+        let items = await Api.getItems();
+        items = await items.message.items;
+
+        let foundElement = false;
+        items.plants.forEach(element => {
+            if (element.id == id) {
+                foundElement = element;
+            }
+        });
+        if (foundElement == false) {
+            items.fertilizers.forEach(element => {
+                foundElement = element;
+            });
+        }
+        
+        let newbornItem = createItemFromData(foundElement)
+        if (this.willFit(newbornItem, count)) {
+            return this.addItem(newbornItem, count);
+        } else {
+            return new Result(false, "Theres not enough space in the inventory")
+        }
+    }
     render() {
         $("#inventory").children().each((index, element) => {
             //console.log($(this))
@@ -218,8 +263,8 @@ export class Game {
         this.#balance = 250; 
     }
 
-    #renderBalance(difference) {
-        $("#balance").text(Math.round(this.#balance + difference))
+    #renderBalance() {
+        $("#balance").text(this.#balance)
     }
 
     getBalance() {
@@ -231,10 +276,15 @@ export class Game {
         if (newBalance < 0) {
             return new Result(false, "Cannot afford this operation")
         } else {
-            this.#renderBalance(amount);
             this.#balance = newBalance;
+            this.#renderBalance();
             return new Result(true, newBalance);
         }
+    }
+
+    forceSetBalance(amount) {
+        this.#balance = amount;
+        this.#renderBalance();
     }
 }
 

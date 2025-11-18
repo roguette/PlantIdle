@@ -198,7 +198,8 @@
             "name": "Nawóz Kwaśny",
             "id": "nawoz_kwasny",
             "item_type": "fertilizer",
-            "buy_price": 10,
+            "buy_price": 25,
+            "item_icon": "fertilizer_acidic.svg",
             "pest_protection": false,
             "effects": [
                 {
@@ -228,8 +229,9 @@
             "name": "Nawóz Zasadowy",
             "id": "nawoz_zasadowy",
             "item_type": "fertilizer",
-            "buy_price": 10,
+            "buy_price": 25,
             "pest_protection": false,
+            "item_icon": "fertilizer_alkaline.svg",
             "effects": [
                 {
                     "plant_type": "flower",
@@ -258,8 +260,9 @@
             "name": "Nawóz Naturalny",
             "id": "nawoz_naturalny",
             "item_type": "fertilizer",
-            "buy_price": 10,
+            "buy_price": 50,
             "pest_protection": false,
+            "item_icon": "fertilizer_natural.svg",
             "effects": [
                 {
                     "plant_type": "flower",
@@ -288,8 +291,9 @@
             "name": "Nawóz sztuczny",
             "id": "nawoz_sztuczny",
             "item_type": "fertilizer",
-            "buy_price": 10,
+            "buy_price": 50,
             "pest_protection": true,
+            "item_icon": "fertilizer_chemical.svg",
             "effects": [
                 {
                     "plant_type": "flower",

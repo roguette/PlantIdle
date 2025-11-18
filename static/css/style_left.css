@@ -24,7 +24,7 @@
 }
 .button-primary {
     border: none;
-    background-color: #a02f83;
+    background-color: var(--secondary);
     color: var(--white);
     cursor: pointer;
     border-radius: 4px;
@@ -234,15 +234,35 @@ h1.heading{
     bottom: 4px;
 }
 
-.fart{
+.fertilizer{
     width: 100%;
-    height: 100%;
+    max-width: 40vw;
     background-color: var(--lighter-background);
     border-radius: 4px;
     border: 1px solid var(--border);
-    min-height: 100px;
+    padding: 8px;
+    display: flex;
+    box-sizing: border-box;
     opacity: 0;
+    gap: 8px;
     animation: opacityTransition 0.25s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+.fertilizer img {
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+.fertilizer-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.fertilizer-actions {
+    margin-top: auto;
+    display: flex;
+    margin-left: auto;
+    gap: 8px;
+    align-items: center;
 }
 
 #fertilizers{
