@@ -14,7 +14,7 @@ async function loadInventoryHTML(game) {
 
     for (let i = 0; i < await items.message.items.fertilizers.length; i++) {
         let fertilizer = items.message.items.fertilizers[i];
-        console.log(fertilizer)
+        //console.log(fertilizer)
 
         let newSlot = $("<div>").addClass("fertilizer").css("animation-delay", `${i / 7}s`);
         let img = $("<img>").attr("src", `static/svg/${fertilizer.item_icon || "placeholder.svg"}`).addClass("fertilizer-icon");
@@ -80,7 +80,6 @@ async function loadShopHTML() {
     const items = await Api.getItems();
 
     $("#shop-items").html("");
-    console.log(items.message.items)
     items.message.items.plants.forEach((plant, i) => {
         // <div class="shop-item" type="fruit" name="winogrono">1. Owoc - winogrono</div>
         let container = $("<div>").addClass("shop-item").attr("type", plant.item_type).attr("name", plant.id).text(plant.name).css("animation-delay", `${i / 50}s`)

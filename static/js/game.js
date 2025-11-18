@@ -214,11 +214,14 @@ class Inventory {
         });
         if (foundElement == false) {
             items.fertilizers.forEach(element => {
-                foundElement = element;
+                if (element.id == id) {
+                    foundElement = element;
+                }
             });
         }
         
         let newbornItem = createItemFromData(foundElement)
+        console.log(id, newbornItem)
         if (this.willFit(newbornItem, count)) {
             return this.addItem(newbornItem, count);
         } else {
@@ -228,7 +231,7 @@ class Inventory {
     render() {
         $("#inventory").children().each((index, element) => {
             //console.log($(this))
-            console.log(this.slots);
+            //console.log(this.slots);
             element.setAttribute("hasTooltip", false);
             element.innerHTML = "";
             if (!this.slots[index].isEmpty()) {
