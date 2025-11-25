@@ -76,8 +76,8 @@ body{
 }
 
 #left{
-    min-width: 37%;
-    height: 100%;
+    width: 42%;
+    height: 100vh;
     padding: 20px 15px;
     position: relative;
     background-color: var(--white);
@@ -90,7 +90,8 @@ body{
 
 #inventory-card,
 #shop-card,
-#settings-card{
+#settings-card,
+#fertilizers-card{
     height: 100%;
     width: 100%;
     display: flex;
@@ -99,7 +100,8 @@ body{
 }
 
 #shop-card,
-#settings-card{
+#settings-card,
+#fertilizers-card{
     display: none;
 }
 
@@ -173,7 +175,8 @@ body{
 }
 
 #shop-tab,
-#settings-tab{
+#settings-tab,
+#fertilizers-tab{
     margin-left: -30px;
 }
 
@@ -188,7 +191,7 @@ h1.heading{
 #inventory{
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
-
+    margin: auto;
     gap: 10px;
     align-items: center;
     align-content: stretch;
@@ -225,6 +228,11 @@ h1.heading{
     bottom: 8px;
 }
 
+.inventory-slot {
+    width: 5vw;
+    height: 5vw;
+}
+
 .inventory-slot .slot-label{
     position: absolute;
     padding: 0.16875em 0.5em 0.16875em 0.5em;
@@ -248,8 +256,8 @@ h1.heading{
     animation: opacityTransition 0.25s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 .fertilizer img {
-    height: 100%;
-    aspect-ratio: 1/1;
+    width: 100px;
+    height: 100px;
 }
 .fertilizer-text {
     width: 100%;
@@ -264,13 +272,12 @@ h1.heading{
     gap: 8px;
     align-items: center;
 }
-
 #fertilizers{
-    overflow-y: scroll;
-    margin-top: auto;
+    margin: auto;
     scrollbar-width: thin;
     width: 100%;
     max-height: 45%;
+    min-height: 30vh;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -318,13 +325,13 @@ h1.heading{
         opacity: 1;
     }
 }
-@media (max-width: 1300px) {
-
+@media (max-width: 1100px) {
     #inventory{
         grid-template-columns: auto auto auto auto auto;
     }
-    .inventory-slot{
-        width: 75px;
-        height: 75px;
+    .heading {
+        display: none;
+        font-size: 20px;
     }
+
 }

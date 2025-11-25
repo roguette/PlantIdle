@@ -108,7 +108,7 @@ $(async () => {
     if (window.mobileCheck()) {
         new InfoModal({
         title: "No.",
-        message: "Go into landscape mode and turn on desktop mode",
+        message: "this will look bad on a phone",
         canClose: false
      });
     }

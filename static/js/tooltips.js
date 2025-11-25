@@ -29,9 +29,10 @@ export class Tooltips {
         this.tooltip.append(this.p);
 
         $('body').prepend(this.tooltip);
-
+        this.tooltip.css("display","none");
 
         document.body.addEventListener("mousemove", (event) => {
+            this.tooltip.css("display","block");
             const slot = event.target.closest(".inventory-slot");
             if (!slot || slot.getAttribute("hastooltip") === "false") {
                 this.hide();
