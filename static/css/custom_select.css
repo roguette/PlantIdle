@@ -1,6 +1,6 @@
 .custom-select {
-  min-width: 350px; /* NEEDS CHANGING */
   position: relative;
+  min-width: 350px;
   flex-grow: 2;
   height: 50px;
 }
@@ -39,9 +39,3 @@
   border-top: var(--size) solid black;
   top: 55%;
 }
-
-
-/*=============
-Aesthetics 
-=========================*/
-
