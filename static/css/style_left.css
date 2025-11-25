@@ -306,6 +306,22 @@ h1.heading{
     border-radius: 4px;
     background-color: var(--white);
 }
+
+#trash-cell {
+    width: 5vw;
+    height: 5vw;
+    display: flex;
+    border: 2px solid hsl(0, 88%, 38%);
+    background-color: rgba(255, 81, 81, 0.259);
+    border-radius: 4px;
+    margin-left: auto;
+}
+#trash-cell span {
+    margin: auto;
+    font-size: 3.5vw;
+    color: rgba(207, 53, 53, 0.259);
+}
+
 @keyframes appear {
     0%{
         transform: translateY(8px);
