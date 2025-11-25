@@ -92,6 +92,28 @@ async function loadFertilizers(game) {
 
     }
 }
+function setupTrash(game) {
+    let trashCell = document.querySelector("#trash-cell");
+    trashCell.addEventListener("dragenter", (e) => {
+        e.preventDefault();
+        $(trashCell).addClass("hover-target");
+    })
+    trashCell.addEventListener("dragover", (e) => {
+        e.preventDefault(); 
+    })
+    trashCell.addEventListener("dragleave", (e) => {
+        e.preventDefault();
+        $(trashCell).removeClass("hover-target");
+    })
+    trashCell.addEventListener("drop", (e) => {
+        e.preventDefault();
+        $(trashCell).removeClass("hover-target");
+        console.log(e.dataTransfer.getData("type"), e.dataTransfer.getData("index"))
+        if (e.dataTransfer.getData("type") === "item") {
+            game.inventory.clearSlot(parseInt(e.dataTransfer.getData("index")))
+        }
+    })
+}
 async function loadShopHTML() {
     const items = await Api.getItems();
 
@@ -159,7 +181,7 @@ $(async () => {
     game.forceSetBalance(2000);
     loadShopHTML(game);
     loadFertilizers(game);
-
+    setupTrash(game);
     
 
 

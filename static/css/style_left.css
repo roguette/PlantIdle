@@ -217,7 +217,7 @@ h1.heading{
 
 }
 .hover-target {
-    border: 2px solid var(--secondary);
+    border: 3px solid var(--secondary) !important;
 }
 .inventory-slot-animation {
     animation: appear 0.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
@@ -335,6 +335,7 @@ h1.heading{
     margin: auto;
     font-size: 3.5vw;
     color: rgba(207, 53, 53, 0.259);
+    pointer-events: none;
 }
 
 @keyframes appear {

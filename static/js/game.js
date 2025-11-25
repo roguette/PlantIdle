@@ -1,5 +1,5 @@
 import { Result, Api } from "./api.js";
-
+import { YesNoModal } from "./modal.js";
 export const inventorySlots = 30;
 export const stackSize = 99;
 
@@ -19,7 +19,7 @@ export class Item {
     effects;
     label;
 
-    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon, itemDescription, pestProtection, effects, label}) {
+    constructor({ name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon, itemDescription, pestProtection, effects, label }) {
         this.name = name;
         this.id = id;
         this.itemType = itemType;
@@ -64,7 +64,7 @@ export class InventorySlot {
 
     isEmpty() {
         const isSlotEmpty = this.item === null || this.count <= 0;
-        
+
         if (isSlotEmpty) { // automatically clears invalid items
             this.item = null;
             this.count = 0;
@@ -99,17 +99,17 @@ class Inventory {
             } else {
                 toShow[row][column] = `${i}: ${slot.item.id}x${slot.count}`;
             }
-            
+
         }
         // console.table does not work without the timeout
 
         setTimeout(() => {
-            console.table(toShow);  
+            console.table(toShow);
         }, 1);
 
     }
     addItem(addedItem, toAdd = 1, index = null) {
-        
+
         if (!(addedItem instanceof Item)) {
             return new Result(false, "Not an item");
         }
@@ -121,7 +121,7 @@ class Inventory {
         }
 
         if (index !== null) { // allows inserting in specific slots
-            index = ((index % inventorySlots) + inventorySlots) % inventorySlots; 
+            index = ((index % inventorySlots) + inventorySlots) % inventorySlots;
             const slot = this.slots[index];
             if (!slot.isEmpty() && slot.item.id === addedItem.id) {
                 // can stack
@@ -157,14 +157,14 @@ class Inventory {
                     toAdd -= ableToAdd;
                 }
 
-            }   
+            }
         }
 
-        for (let i = 0; i < inventorySlots && toAdd > 0 ; i++) { // second pass - Ok we cant stack with anything, look for an empty slot
+        for (let i = 0; i < inventorySlots && toAdd > 0; i++) { // second pass - Ok we cant stack with anything, look for an empty slot
             const slot = this.slots[i];
             if (!slot.isEmpty()) {
                 continue; // skip slots with items
-            }   
+            }
             const willAdd = Math.min(stackSize, toAdd) // add at most 1 stack
             slot.item = addedItem
             slot.count = willAdd;
@@ -191,6 +191,27 @@ class Inventory {
         this.slots[index].count = count;
         this.render();
         return new Result(true, "");
+    }
+    clearSlot(index) {
+        let t = this
+        if (index === undefined || index === null) {
+            return new Result(false, "Index and count cannot be null");
+        }
+        if (index < 0 || index >= inventorySlots) {
+            return new Result(false, "Index out of range");
+        }
+        new YesNoModal({
+            title: "Delete " + this.slots[index].item.name + "?",
+            closedCallback: function (value) {
+                if (value == "Yes") {
+                    t.slots[index].item = null;
+                    t.slots[index].count = 0;
+                    t.render();
+                    return new Result(true, "");
+                }
+            }
+        })
+
     }
     willFit(item, count) {
         let canFit = 0;
@@ -233,7 +254,7 @@ class Inventory {
                 }
             });
         }
-        
+
         let newbornItem = createItemFromData(foundElement)
         //console.log(id, newbornItem)
         if (this.willFit(newbornItem, count)) {
@@ -247,7 +268,7 @@ class Inventory {
 
             const newElement = element.cloneNode(false);
             element.parentNode.replaceChild(newElement, element);
-            element = newElement; 
+            element = newElement;
 
 
             element.setAttribute("index", index)
@@ -256,15 +277,15 @@ class Inventory {
             element.setAttribute("hasTooltip", false);
             element.innerHTML = "";
 
-            element.addEventListener("dragover", (e)=>{
+            element.addEventListener("dragover", (e) => {
                 e.preventDefault();
                 $(element).addClass("hover-target");
             })
-            element.addEventListener("dragleave", (e)=>{
+            element.addEventListener("dragleave", (e) => {
                 e.preventDefault();
                 $(element).removeClass("hover-target");
             })
-            element.addEventListener("drop", (e)=>{
+            element.addEventListener("drop", (e) => {
                 e.preventDefault();
                 $(element).removeClass("hover-target");
                 if (e.dataTransfer.getData("type") === "item") {
@@ -276,22 +297,22 @@ class Inventory {
                 let iconFileName = this.slots[index].item.itemIcon || "placeholder.svg";
                 let labelFileName = this.slots[index].item.labelIcon || "placeholder.svg";
                 let itemDescription = this.slots[index].item.itemDescription || null;
-                
+
                 element.setAttribute("hasTooltip", true);
                 element.setAttribute("item-description", itemDescription);
                 element.setAttribute("item-name", this.slots[index].item.name);
 
-                let image = $("<img>").attr("src","/static/svg/" + iconFileName).addClass("slot-image").attr("draggable", true).attr("index", index);
+                let image = $("<img>").attr("src", "/static/svg/" + iconFileName).addClass("slot-image").attr("draggable", true).attr("index", index);
                 $(element).append(image);
 
                 let countDiv = $("<div>").addClass("count").text(this.slots[index].count);
                 $(element).append(countDiv);
                 if (this.slots[index].item.label) {
-                    let label = $("<img>").attr("src","/static/svg/" + labelFileName).addClass("slot-label")
+                    let label = $("<img>").attr("src", "/static/svg/" + labelFileName).addClass("slot-label")
                     $(element).append(label);
                 }
-                
-                image[0].addEventListener("dragstart", (e)=>{
+
+                image[0].addEventListener("dragstart", (e) => {
                     console.log("dragging");
                     e.dataTransfer.setData("index", index.toString());
                     e.dataTransfer.setData("type", "item");
@@ -303,12 +324,12 @@ class Inventory {
 
 export class Game {
     inventory; // class Inventory
-    #balance; 
+    #balance;
 
 
     constructor() {
         this.inventory = new Inventory()
-        this.#balance = 250; 
+        this.#balance = 250;
     }
 
     #renderBalance() {
@@ -338,7 +359,7 @@ export class Game {
 
 
 
-export function returnTestItem(name = "default"){
+export function returnTestItem(name = "default") {
     return new Item({
         name: `Test item "${name}"`,
         id: `test_${name}`,
