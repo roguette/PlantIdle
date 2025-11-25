@@ -221,7 +221,7 @@ class Inventory {
         }
         
         let newbornItem = createItemFromData(foundElement)
-        console.log(id, newbornItem)
+        //console.log(id, newbornItem)
         if (this.willFit(newbornItem, count)) {
             return this.addItem(newbornItem, count);
         } else {

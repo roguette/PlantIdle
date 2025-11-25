@@ -6,12 +6,14 @@ class Modal {
     title; 
     message;
     canCancel;
+    canClose;
     buttonContainer;
 
-    constructor(title, message, canCancel) {
+    constructor(title, message, canCancel, canClose) {
         this.title = title;
         this.message = message;
         this.canCancel = canCancel;
+        this.canClose = canClose;
 
         let container = $("<div>").addClass("modal-container"); // <div class="modal-container">
         let modal = $("<div>").addClass("modal-box"); // <div class="modal-box"></div>
@@ -25,7 +27,7 @@ class Modal {
         textContainer.append($("<p>").addClass("modal-subtitle").text(this.message)); // <p class="modal-subtitle">...</p>
         modalInfo.append(textContainer);
 
-        if (this.canCancel) {
+        if (this.canCancel && this.canClose) {
             let closeButton = $("<span>").addClass("material-symbols-outlined").text("close").css("margin-left","auto"); 
             closeButton.on("click", () => this.closeModal());
             modalInfo.append(closeButton);
@@ -50,14 +52,15 @@ export class InfoModal extends Modal {
 
     closedCallback;
 
-    constructor({title, message, canCancel = true, buttonText = "Got it", closedCallback}) {
-        super(title, message, canCancel);
+    constructor({title, message, canCancel = true, buttonText = "Got it", canClose = true, closedCallback}) {
+        super(title, message, canCancel, canClose);
         this.buttonText = buttonText;
         this.closedCallback = closedCallback;
 
-
-        let closeButton = $("<button>").addClass("modal-button button-primary").text(this.buttonText);
-        this.buttonContainer.append(closeButton);
+        if (canClose) {
+            let closeButton = $("<button>").addClass("modal-button button-primary").text(this.buttonText);
+            this.buttonContainer.append(closeButton);
+        }
 
         closeButton.on("click", () => {
             this.closeModal();
