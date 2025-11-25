@@ -17,8 +17,9 @@ export class Item {
     itemDescription;
     pestProtection;
     effects;
+    label;
 
-    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon, itemDescription, pestProtection, effects}) {
+    constructor({name, id, itemType, buyPrice, sellPrice, growthTime, isSpecial, treeIcon, itemIcon, itemDescription, pestProtection, effects, label}) {
         this.name = name;
         this.id = id;
         this.itemType = itemType;
@@ -31,6 +32,7 @@ export class Item {
         this.itemDescription = itemDescription;
         this.pestProtection = pestProtection;
         this.effects = effects;
+        this.label = label;
     }
 }
 
@@ -202,6 +204,18 @@ class Inventory {
         }
         return canFit >= count;
     }
+    swapSlots(a, b) {
+        if (a < 0 || a > inventorySlots) {
+            return new Result(false, "Cannot swap from slot " + a)
+        }
+        if (b < 0 || b > inventorySlots) {
+            return new Result(false, "Cannot swap from slot " + b)
+        }
+
+        [this.slots[a], this.slots[b]] = [this.slots[b], this.slots[a]];
+        this.render();
+        return new Result(true, "");
+    }
     async addItemById(id, count) {
         let items = await Api.getItems();
         items = await items.message.items;
@@ -230,10 +244,34 @@ class Inventory {
     }
     render() {
         $("#inventory").children().each((index, element) => {
+
+            const newElement = element.cloneNode(false);
+            element.parentNode.replaceChild(newElement, element);
+            element = newElement; 
+
+
+            element.setAttribute("index", index)
             //console.log($(this))
             //console.log(this.slots);
             element.setAttribute("hasTooltip", false);
             element.innerHTML = "";
+
+            element.addEventListener("dragover", (e)=>{
+                e.preventDefault();
+                $(element).addClass("hover-target");
+            })
+            element.addEventListener("dragleave", (e)=>{
+                e.preventDefault();
+                $(element).removeClass("hover-target");
+            })
+            element.addEventListener("drop", (e)=>{
+                e.preventDefault();
+                $(element).removeClass("hover-target");
+                if (e.dataTransfer.getData("type") === "item") {
+                    console.log(index, parseInt(e.dataTransfer.getData("index")));
+                    this.swapSlots(index, parseInt(e.dataTransfer.getData("index")));
+                }
+            })
             if (!this.slots[index].isEmpty()) {
                 let iconFileName = this.slots[index].item.itemIcon || "placeholder.svg";
                 let labelFileName = this.slots[index].item.labelIcon || "placeholder.svg";
@@ -243,14 +281,21 @@ class Inventory {
                 element.setAttribute("item-description", itemDescription);
                 element.setAttribute("item-name", this.slots[index].item.name);
 
-                let image = $("<img>").attr("src","/static/svg/" + iconFileName).addClass("slot-image");
+                let image = $("<img>").attr("src","/static/svg/" + iconFileName).addClass("slot-image").attr("draggable", true).attr("index", index);
                 $(element).append(image);
 
                 let countDiv = $("<div>").addClass("count").text(this.slots[index].count);
                 $(element).append(countDiv);
-
-                let label = $("<img>").attr("src","/static/svg/" + labelFileName).addClass("slot-label")
-                $(element).append(label);
+                if (this.slots[index].item.label) {
+                    let label = $("<img>").attr("src","/static/svg/" + labelFileName).addClass("slot-label")
+                    $(element).append(label);
+                }
+                
+                image[0].addEventListener("dragstart", (e)=>{
+                    console.log("dragging");
+                    e.dataTransfer.setData("index", index.toString());
+                    e.dataTransfer.setData("type", "item");
+                })
             }
         });
     }

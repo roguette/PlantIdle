@@ -16,18 +16,25 @@ window.mobileCheck = function() {
 
 const inventorySlots = 30 // deleted intentionally or moved elsewhere without appropriate changes
 let getBalance = null;
-async function loadInventoryHTML(game) {
+function loadInventoryHTML() {
     for (let i = 0; i < inventorySlots; i++) {
-        let newSlot = $("<div>").addClass("inventory-slot").css("animation-delay", `${Math.sqrt(i) / 25}s`)
+        let newSlot = $("<div>").addClass("inventory-slot").addClass("inventory-slot-animation").css("animation-delay", `${Math.sqrt(i) / 25}s`);
         $("#inventory").append(newSlot);
+
     }
+    setTimeout(() => {
+        $(".inventory-slot").addClass("inventory-slot-animation-done");
+    }, 250)
+    ;
+}
+async function loadFertilizers(game) {
     const items = await Api.getItems();
 
     for (let i = 0; i < await items.message.items.fertilizers.length; i++) {
         let fertilizer = items.message.items.fertilizers[i];
         //console.log(fertilizer)
 
-        let newSlot = $("<div>").addClass("fertilizer").css("animation-delay", `${i / 7}s`);
+        let newSlot = $("<div>").addClass("fertilizer").css("animation-delay", `${i / 20}s`);
         let img = $("<img>").attr("src", `static/svg/${fertilizer.item_icon || "placeholder.svg"}`).addClass("fertilizer-icon");
         let textDiv = $("<div>").addClass("fertilizer-text");
         let title = $("<h3>").text(fertilizer.name || "Title");
@@ -84,9 +91,7 @@ async function loadInventoryHTML(game) {
         $("#fertilizers").append(newSlot);
 
     }
-
 }
-
 async function loadShopHTML() {
     const items = await Api.getItems();
 
@@ -153,6 +158,11 @@ $(async () => {
     game.inventory.printItems();
     game.forceSetBalance(2000);
     loadShopHTML(game);
+    loadFertilizers(game);
+
+    
+
+
     // setInterval(function(){
     //     game.deltaBalance(100);
     // }, 1000)

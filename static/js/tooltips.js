@@ -70,5 +70,8 @@ export class Tooltips {
             }
             this.move(event);
         });
+        document.body.addEventListener("mousedown", ()=>{
+            this.hide();
+        })
     }
 }
